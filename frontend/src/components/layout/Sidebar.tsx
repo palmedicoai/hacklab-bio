@@ -33,11 +33,11 @@ const pages: PageLink[] = [
     title: 'Agent Flows',
     Icon: FlowsIcon,
   },
-  {
-    path: '/agent-flows/new',
-    title: 'New Agent Flow',
-    Icon: NewFlowIcon,
-  },
+  // {
+  //   path: '/agent-flows/new',
+  //   title: 'New Agent Flow',
+  //   Icon: NewFlowIcon,
+  // },
 ];
 
 const Sidebar: FC<SidebarProps> = memo(({ collapsed, setCollapsed }) => {

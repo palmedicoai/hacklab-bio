@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  judge-agent-a2a:
+    build: .
+    command: [".venv/bin/python", "main_judge-agent.py", "--host", "0.0.0.0", "--port", "7000"]
+    ports:
+      - "7000:7000"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - OPENAI_API_KEY2=${OPENAI_API_KEY2}
+  live-agent-a2a:
+    build: .
+    command: [".venv/bin/python", "main_live_agent.py", "--host", "0.0.0.0", "--port", "7001"]
+    ports:
+      - "7001:7001"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - OPENAI_API_KEY2=${OPENAI_API_KEY2}

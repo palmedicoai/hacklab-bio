@@ -1,13 +1,18 @@
 export const theme = {
   colors: {
     primary: {
-      dark: '#1A2D42',
-      medium: '#2E4156',
+      // Verde azulado oscuro (Header)
+      dark: '#147a7a',
+      // Verde azulado principal (Fondo)
+      medium: '#1fb2b2',
     },
     neutral: {
-      light: '#AAB7B7',
-      medium: '#C0C8CA',
-      lighter: '#D4D8DD',
+      // Texto secundario (Descripción)
+      light: '#757575',
+      // Texto silenciado (Etiquetas "SAFETY", "EFFECT")
+      medium: '#9e9e9e',
+      // Bordes de tarjetas
+      lighter: '#eeeeee',
     },
   },
-}; 
+};

@@ -59,7 +59,7 @@ const ChatPage = () => {
   }, [user, clearMessages, id]);
 
   return (
-    <MainLayout currentPage="🧪🧬💻 HackLab-Bio Chat">
+    <MainLayout currentPage="🧬 LIVE! Database💻🧪">
       <div className="h-full p-16 pb-0">
         {isLoading ? (
           <div className="flex items-center justify-center min-h-[500px]">
