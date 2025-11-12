@@ -1,175 +1,43 @@
-# 🧬 LIVE! Database💻🧪
+# 🧪🧬💻 HackLab-Bio
+![hacklabBio](https://github.com/user-attachments/assets/f899b123-8dd1-4990-9132-d84131bc7881)
 
-This repository contains the development of an agentic AI system designed to understand diferents Longevity Interventions. This work is the implementation for Hackaging Hackathon and is built upon the GenAI-AgentOS framework and hacklab-bio (forked from [genai-works-org/genai-agentos](https://github.com/genai-works-org/genai-agentos)).
-# Overview
-
-This repository implements a modular, agentic AI system for longevity intervention research, built for the Hackaging Hackathon. It is based on the GenAI-AgentOS framework and integrates multiple agent types, orchestration modules, and biomedical tools. The system enables:
-
-- Automated literature surveillance
-- [Search on Longevity Intervention Verified Evidence (LIVE Database)](https://database.longevityadvice.com/)
-- Hypothesis synthesis
-- Suggentions about perzonalized interventions
-
-Agents interact via GenAI Protocol, A2A, and MCP standards, supporting both LLM-driven and tool-based workflows.
-
+This repository contains the development of an agentic AI system designed to accelerate research workflows in cellular longevity. This work is the implementation for a Master's Thesis and is built upon the GenAI-AgentOS framework (forked from [genai-works-org/genai-agentos](https://github.com/genai-works-org/genai-agentos)).
 ## Objective
 
-Create and adapt intelligent agents to help users understand longevity interventions based on scientific evidence.
-
+The main objective of this fork is to create and adapt intelligent agents that automate and optimize tasks in cellular longevity research, supporting faster experimentation, data analysis, and scientific discovery.
 ## Features
 
-- Modular multi-agent architecture (CrewAI, GenAI Protocol, A2A, MCP)
-- Integration with scientific databases and external APIs (PubMed, KEGG, Reactome, Google Scholar)
-- Customizable workflows for cellular longevity and biomedical studies
-- Extensible framework for new agent/tool development
-- Docker and CLI support for easy deployment and management
-
+- Modular agent architecture for research automation
+- Integration with scientific data sources and tools
+- Customizable workflows for cellular longevity studies
+- Extensible framework for new agent development
 ## Repository Structure
 
-- `backend/`: FastAPI backend, REST & WebSocket API, agent orchestration
-- `frontend/`: React/Vite/TypeScript UI for agent interaction
-- `master-agent/`: LLM-powered supervisor agent (ReAct, LangGraph)
-- `router/`: WebSocket server for agent registration and message routing
-- `cli/`: Command-line interface for agent/user management
-- `crewai-a2a-server/`: CrewAI-based biomedical multi-agent system (A2A protocol)
-- `live-a2a-server/`: CrewAI-based agents for live/judge biomedical queries
-- `tests/`: Pytest-based test suite
+- `backend/`: Core API and agent logic
+- `frontend/`: User interface for interacting with agents
+- `master-agent/`, `router/`, `genai_agents_example/`: Specialized agents and orchestration modules
+- `crewai-a2a-server/`: [HackLab-bio Agents A2A](https://github.com/palmedicoai/hacklab-bio/tree/main/crewai-a2a-server) 
 
-## Architecture
+## Overwall Architecture 
 
-```mermaid
-sequenceDiagram
-    participant Client as User/Frontend/CLI
-    participant Router as WebSocket Router
-    participant Backend as Backend API
-    participant Master as Master Agent (LLM)
-    participant Agent as GenAI/A2A/MCP Agent
-    participant Tool as External Tool/API
+<img width="3457" height="2159" alt="HacklabBio" src="https://github.com/user-attachments/assets/2406d3b1-f7d7-4f35-b56b-8e3bd6d337fa" />
 
-    Client->>Frontend: User query
-    Frontend->>Router: WebSocket/API request
-    Router->>Backend: Route message
-    Backend->>Master: Orchestrate query
-    Master->>Agent: Invoke agent/tool
-    Agent->>Tool: Query external API/database
-    Tool->>Agent: Return data
-    Agent->>Master: Structured artifact
-    Master->>Backend: Aggregate response
-    Backend->>Frontend: Return result
-```
 
-## Example Use Cases
+## Example uses
 
-- Literature search and synthesis (PubMed, arXiv, Google Scholar)
-- Genomic data extraction and pathway mapping
-- Intervention analysis and evidence review
-- Hypothesis generation from multi-agent artifacts
+<img width="2000" height="947" alt="image" src="https://github.com/user-attachments/assets/e78b80e2-210f-436a-ae8b-ec22a64824f6" />
 
-## Supported Agent Types
+<img width="2000" height="947" alt="image" src="https://github.com/user-attachments/assets/445b1a0a-4fa2-40e1-9627-eeba6c1bbc81" />
 
-| Agent Type       | Description                                                                                   |
-|------------------|-----------------------------------------------------------------------------------------------|
-| **GenAI Agents** | Connected via [`genai-protocol`](https://pypi.org/project/genai-protocol/) library interface. |
-| **MCP Servers**  | MCP (Model Context Protocol) servers can be added by pasting their URL in the UI.             |
-| **A2A Servers**  | A2A (Agent to Agent Protocol) servers can be added by pasting their URL in the UI.            |
+<img width="2000" height="1019" alt="image" src="https://github.com/user-attachments/assets/2761fbc1-cffd-4a0f-9e78-d5ec1521ca4a" />
 
-## Project Setup
+# Configured HackLab-Bio A2A Agents
 
-### Prerequisites
+<img width="2000" height="763" alt="image" src="https://github.com/user-attachments/assets/820ae15a-a186-4b4b-910a-168728d49ad1" />
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- [`make`](https://www.gnu.org/software/make/) (optional)
-- [Node.js](https://nodejs.org/en/download/) (for frontend)
-- [uv](https://docs.astral.sh/uv/) or pip (for Python agents)
+## Getting Started
 
-### Environment Variables
-
-Create a `.env` file in the root directory. See `.env-example` for available variables. Key variables include:
-
-- `FRONTEND_PORT`, `ROUTER_WS_URL`, `SECRET_KEY`, `POSTGRES_*`, `MASTER_AGENT_API_KEY`, `BACKEND_CORS_ORIGINS`, etc.
-
-### Local Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/MPomaresJF/live-agentic-database
-   cd hacklab-bio/
-   ```
-2. Create a `.env` file:
-   ```bash
-   cp .env-example .env
-   ```
-3. Start Docker desktop and ensure it is running.
-4. Start the infrastructure:
-   ```bash
-   make up
-   # or
-   docker compose up
-   ```
-5. Access services:
-   - Frontend UI: [http://localhost:3000/](http://localhost:3000/)
-   - Swagger API Docs: [http://localhost:8000/docs#/](http://localhost:8000/docs#/)
-
-### Frontend
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start development server:
-   ```bash
-   npm run dev
-   ```
-   App available at [http://localhost:3000](http://localhost:3000)
-
-### Backend
-
-1. Install Python 3.12 and `uv` (see backend/README.md for details)
-2. Install dependencies:
-   ```powershell
-   uv venv
-   uv sync
-   .venv\Scripts\Activate.ps1
-   uv run main.py
-   ```
-3. Ensure Postgres is running and migrations are applied:
-   ```powershell
-   alembic upgrade head
-   ```
-
-### CLI
-
-1. Install or build CLI (see cli/README.md)
-2. Register/login users and agents:
-   ```powershell
-   python cli.py signup -u <username>
-   python cli.py login -u <username> -p <password>
-   python cli.py register_agent --name <agent_name> --description <desc>
-   ```
-
-### CrewAI A2A Servers
-
-See `crewai-a2a-server/README.md` and `live-a2a-server/README.md` for agent details and Docker usage.
-
-## Troubleshooting
-
-- If MCP/A2A servers are not accessible, use `host.docker.internal` instead of `localhost` in URLs.
-- Ensure all environment variables are set and Docker containers are running.
-- Clean up Docker assets if issues persist (remove containers, images, volumes).
-
-## References
-
-- [GenAI-AgentOS](https://github.com/genai-works-org/genai-agentos)
-- [CrewAI Documentation](https://docs.crewai.com/introduction)
-- [A2A Protocol](https://a2a-protocol.org)
-- [KEGG API](https://www.kegg.jp/kegg/rest/keggapi.html)
-- [Reactome API](https://reactome.org/ContentService/)
-- [Google Gemini API](https://ai.google.dev/gemini-api)
-
-## License
-
-[MIT](LICENSE)
+Refer to the original GenAI-AgentOS documentation for setup instructions. This README provides details specific to the cellular longevity research implementation.
 # 🐍 GenAI Agents Infrastructure
 
 This repository provides the complete infrastructure for running GenAI agents, including:
